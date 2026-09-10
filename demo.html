@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#1c1b22" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Badger App Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!--
+  The demo launcher. One button per kind of user, each opening the app in its
+  own tab, signed in as a made-up person after a single tap on Log in.
+
+  Tarryn, 10/09/2026: "a button that takes lindsay to login screen and she
+  doesn't need to enter anything and can just push login ... must open in new
+  page ... and so on for each role view."
+
+  badger-8qb5ygqs is filled in by scripts/deploy-badger-app.sh from the
+  workspace .env, so the passcode is never written into the source. Every email
+  here must be a made-up person on badger.invalid, and every role must appear -
+  test/demo.test.js fails if either stops being true.
+-->
+<style>
+  :root {
+    --ink: #1c1b22; --slate: #2f2e3a; --mid: #6b6a7b; --line: #e6e4ee;
+    --wash: #f6f5fa; --accent: #e8447f; --accent-ink: #b52a5d; --gold: #c9a24a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #eeecf3; color: var(--ink); -webkit-font-smoothing: antialiased;
+  }
+  .top { background: var(--ink); color: #fff; padding: 48px 20px 72px; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 8px; }
+  .mark {
+    width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px;
+  }
+  .brand span { font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  h1 { font-size: 28px; line-height: 1.15; font-weight: 600; margin: 24px 0 8px; }
+  .lede { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.62); margin: 0; }
+  main { padding: 0 20px 48px; margin-top: -44px; }
+  .hero {
+    background: #fff; border-radius: 18px; padding: 20px;
+    box-shadow: 0 1px 2px rgba(28,27,34,.05), 0 8px 24px -12px rgba(28,27,34,.18);
+  }
+  .hero .who { font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-ink); }
+  h2 {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--mid); margin: 32px 4px 10px;
+  }
+  .grid { display: grid; gap: 10px; }
+  .card {
+    background: #fff; border-radius: 16px; padding: 16px 16px 16px 18px;
+    box-shadow: 0 1px 2px rgba(28,27,34,.05), 0 8px 24px -12px rgba(28,27,34,.18);
+    display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  }
+  .card h3 { font-size: 15.5px; font-weight: 600; margin: 0; }
+  .card .person { font-size: 12.5px; color: var(--mid); margin: 2px 0 6px; }
+  .card p { font-size: 13.5px; line-height: 1.5; color: var(--slate); margin: 0; }
+  .text { flex: 1 1 260px; min-width: 0; }
+  a.go {
+    flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px;
+    background: var(--ink); color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;
+    padding: 11px 16px; border-radius: 12px; white-space: nowrap;
+  }
+  a.go:hover { background: var(--slate); }
+  .hero a.go { background: var(--accent-ink); font-size: 15px; padding: 13px 18px; margin-top: 14px; }
+  .hero a.go:hover { background: var(--accent); }
+  .hero h3 { font-size: 20px; margin: 6px 0 2px; }
+  .hero p { font-size: 14px; }
+  .note { font-size: 12.5px; line-height: 1.6; color: var(--mid); margin: 32px 4px 0; }
+  @media (max-width: 460px) {
+    a.go { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><div class="mark">B</div><span>Badger</span></div>
+    <h1>The Badger staff app</h1>
+    <p class="lede">Pick who you want to be. Each one opens in its own tab with the login already filled in, so all you do is press Log in. Open as many as you like side by side.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="who">Super admin</div>
+      <h3>Lindsay Hogan</h3>
+      <p class="person" style="font-size:12.5px;color:#6b6a7b;margin:0 0 8px">Owner, Wild Mongoo</p>
+      <p>Everything: every order, every booking, every company's account, the kitchen and the studio boards, and the books.</p>
+      <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=lindsay.hogan@badger.invalid#/">View as super admin</a>
+    </section>
+
+    <h2>The Wild Mongoo team</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="text">
+          <h3>Production oversight</h3>
+          <div class="person">Sarah Fourie, Wild Mongoo studio</div>
+          <p>Every job coming in, and she sends each one to sewing, embroidery or printing. Sees every company's orders, not the books.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=sarah.fourie@badger.invalid#/">View as oversight</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Looking on</h3>
+          <div class="person">Annalie Steyn, Wild Mongoo studio</div>
+          <p>Sees everything that is going on and can change none of it.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=annalie.steyn@badger.invalid#/">View as looking on</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Kitchen</h3>
+          <div class="person">Michelle Adams, Cause kitchen</div>
+          <p>The kitchen board: food ordered in the app, ticked off as it is made.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=michelle.adams@badger.invalid#/">View as kitchen</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Cafe counter</h3>
+          <div class="person">Zanele Mbeki, Claws cafe</div>
+          <p>What the kitchen is making for Claws, and walk-ins added by hand.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=zanele.mbeki@badger.invalid#/">View as cafe counter</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Studio - printing</h3>
+          <div class="person">Lorikah Booysen, Wild Mongoo studio</div>
+          <p>Printing jobs only, and signing work out when it is collected.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=lorikah.booysen@badger.invalid#/">View as printing</a>
+      </div>
+    </div>
+
+    <h2>Badger staff</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="text">
+          <h3>Staff in George</h3>
+          <div class="person">Thandiwe Mokoena, Dotsure</div>
+          <p>Food from Cause and Claws, meeting rooms, the beauty bar, Dotsure clothing, Badger Bucks and the till pay code.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=thandiwe.mokoena@badger.invalid#/">View as staff</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Manager</h3>
+          <div class="person">Riaan van Zyl, Badger</div>
+          <p>Everything staff have, plus a company card for meeting catering.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=riaan.vanzyl@badger.invalid#/">View as manager</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Gift buyer</h3>
+          <div class="person">Nomsa Dlamini, Dotsure</div>
+          <p>Promotional gifts and company-paid clothing for Dotsure, Softsure, ARC and Pacific.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=nomsa.dlamini@badger.invalid#/">View as gift buyer</a>
+      </div>
+      <div class="card">
+        <div class="text">
+          <h3>Staff outside George</h3>
+          <div class="person">Aletta Kruger, Softsure, Johannesburg</div>
+          <p>Clothing only, because the cafes, the meeting rooms and the beauty bar are all in George.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=aletta.kruger@badger.invalid#/">View as remote staff</a>
+      </div>
+    </div>
+
+    <h2>The companies</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="text">
+          <h3>Company accounts</h3>
+          <div class="person">Wanda Pretorius, Dotsure accounts</div>
+          <p>What Dotsure has ordered, month by month, matched to the invoice. Orders nothing and sees nothing else.</p>
+        </div>
+        <a class="go" target="_blank" rel="noopener" href="./?pass=badger-8qb5ygqs&as=wanda.pretorius@badger.invalid#/">View as company accounts</a>
+      </div>
+    </div>
+
+    <p class="note">Everyone here is made up, and so are their balances. The menu, prices, beauty services and clothing ranges are real. Order and book as much as you like - nothing reaches a real person.</p>
+  </div>
+</main>
+
+</body>
+</html>
